@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact & Feedback - Lalibela</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #F5F5DC; /* Beige */
+      color: #4B2E00; /* Dark Brown */
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #C19A6B; /* Light Brown */
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #4B2E00; /* Dark Brown */
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #F5F5DC; /* Beige */
+      padding: 10px 0;
+      color: #4B2E00; /* Dark Brown */
+    }
+
+    h1, h2 {
+      color: #4B2E00; /* Dark Brown */
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    form input[type="submit"] {
+      width: auto;
+      background-color: #FFA500;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    form input[type="submit"]:hover {
+      background-color: #e69500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact & Feedback</h1>
+    <nav>
+      <a href="index.html">Welcome</a> |
+      <a href="learn-more.html">Learn More</a> |
+      <a href="image-gallery.html">Image Gallery</a> |
+      <a href="multimedia.html">Multimedia</a> |
+      <a href="user-design-page.html">Contact & Feedback</a>
+    </nav>
+  </header>
+  <main>
+    <section id="contact-feedback">
+      <h1>Contact Us</h1>
+      <form id="contactForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        
+        <input type="submit" value="Submit">
+      </form>
+
+      <h1>Feedback Form</h1>
+      <form id="feedbackForm">
+        <label for="feedback">Your Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+        
+        <input type="submit" value="Submit Feedback">
+      </form>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 The Amazing Church - Lalibela
+  </footer>
+
+  <script>
+    function saveDataToFile(data, filename) {
+      const blob = new Blob([data], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting traditionally
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      const formData = `Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\n`;
+      
+      saveDataToFile(formData, 'contact_feedback.txt');
+    });
+
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting traditionally
+      
+      const feedback = document.getElementById('feedback').value;
+      
+      const formData = `Feedback: ${feedback}\n\n`;
+      
+      saveDataToFile(formData, 'feedback.txt');
+    });
+  </script>
+</body>
+</html>
